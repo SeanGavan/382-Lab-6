@@ -6,6 +6,7 @@ void smallLeft(void);
 void smallRight(void);
 void bigLeft(void);
 void bigRight(void);
+void enable(void);
 
 
 void main(void) {
@@ -43,57 +44,111 @@ void main(void) {
 
     while (1) {
 
-//    	moveForward();
-//    	moveBackward();
-//    	smallLeft();
-//    	smallRight();
-//    	bigLeft();
-//    	bigRight();
+    	moveForward();
+    	enable();
+    	moveBackward();
+    	enable();
+    	smallLeft();
+    	enable();
+    	smallRight();
+    	enable();
+    	bigLeft();
+    	enable();
+    	bigRight();
+    	enable();
 
-    	while((P1IN & BIT3) != 0);			// Wait for a button press
-    	while((P1IN & BIT3) == 0);			// and release
+    	if((P1IN & BIT3) != 0){					// if button pressed
+            TA1CCR1 = (TA1CCR1 + 0x010) & 0xFF;	// increase duty cycle
+            TA1CCR2 = (TA1CCR2 + 0x010) & 0xFF;	// decrease duty cycle
+    	}
 
-        TA1CCR1 = (TA1CCR1 + 0x010) & 0xFF;	// increase duty cycle
-        TA1CCR2 = (TA1CCR2 + 0x010) & 0xFF;	// decrease duty cycle
 
     } // end loop
 } // end main
 
+void enable(void) {
+    P2OUT |= BIT0;
+    P2OUT |= BIT3;
+}
 void moveForward(void) {
 
-    P2OUT |= BIT1;
-    P2OUT &= ~BIT5;
+	int t = 0;
+	while (t<0xFFFF){
+	    P2OUT |= BIT1;
+	    P2OUT &= ~BIT5;
+		t++;
+	}
+
+    P2OUT &= ~BIT0;
+    P2OUT &= ~BIT3;
 
 }
 
 void moveBackward(void) {
 
-    P2OUT &= ~BIT1;
-    P2OUT |= BIT5;
+    TA1CCR1 = (TA1CCR1 + 0x20) & 0xFF;	// increase duty cycle
+    TA1CCR2 = (TA1CCR2 + 0x20) & 0xFF;	// decrease duty cycle
+	int t = 0;
+	while (t<0xFFFF){
+	    P2OUT &= ~BIT1;
+	    P2OUT |= BIT5;
+		t++;
+	}
+
+    P2OUT &= ~BIT0;
+    P2OUT &= ~BIT3;
 
 }
 
 void smallLeft(void) {
 
-	P2OUT &= ~BIT1;
-	P2OUT &= ~BIT5;
+	int t = 0;
+	while (t<0xAFFF){
+		P2OUT &= ~BIT1;
+		P2OUT &= ~BIT5;
+		t++;
+	}
+
+    P2OUT &= ~BIT0;
+    P2OUT &= ~BIT3;
 }
 
 void smallRight(void) {
 
-	P2OUT |= BIT1;
-	P2OUT |= BIT5;
+	int t = 0;
+	while (t<0xAFFF){
+		P2OUT |= BIT1;
+		P2OUT |= BIT5;
+		t++;
+	}
+
+    P2OUT &= ~BIT0;
+    P2OUT &= ~BIT3;
 }
 
 void bigLeft(void) {
 
-	P2OUT &= ~BIT1;
-	P2OUT &= ~BIT5;
+	int t = 0;
+	while (t<0xFFFF){
+		P2OUT &= ~BIT1;
+		P2OUT &= ~BIT5;
+		t++;
+	}
+
+    P2OUT &= ~BIT0;
+    P2OUT &= ~BIT3;
 }
 
 void bigRight(void) {
 
-	P2OUT |= BIT1;
-	P2OUT |= BIT5;
+	int t = 0;
+	while (t<0xFFFF){
+		P2OUT |= BIT1;
+		P2OUT |= BIT5;
+		t++;
+	}
+
+    P2OUT &= ~BIT0;
+    P2OUT &= ~BIT3;
 }
 
