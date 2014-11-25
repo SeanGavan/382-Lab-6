@@ -34,7 +34,7 @@ void main(void) {
     P2OUT |= BIT5;
 
 	TA1CTL = ID_3 | TASSEL_2 | MC_1;		// Use 1:8 presclar off MCLK
-    TA1CCR0 = 0x0100;						// set signal period (changed from 0x0100)
+    TA1CCR0 = 0x0100;						// set signal period
 
     TA1CCR1 = 0x0020;
     TA1CCTL1 = OUTMOD_7;					// set TACCTL1 to Reset / Set mode
@@ -57,10 +57,10 @@ void main(void) {
     	bigRight();
     	enable();
 
-    	if((P1IN & BIT3) != 0){					// if button pressed
-            TA1CCR1 = (TA1CCR1 + 0x010) & 0xFF;	// increase duty cycle
-            TA1CCR2 = (TA1CCR2 + 0x010) & 0xFF;	// decrease duty cycle
-    	}
+//    	if((P1IN & BIT3) != 0){					// if button pressed
+//            TA1CCR1 = (TA1CCR1 + 0x010) & 0xFF;	// increase duty cycle
+//            TA1CCR2 = (TA1CCR2 + 0x010) & 0xFF;	// decrease duty cycle
+//    	}
 
 
     } // end loop
@@ -86,8 +86,9 @@ void moveForward(void) {
 
 void moveBackward(void) {
 
-    TA1CCR1 = (TA1CCR1 + 0x20) & 0xFF;	// increase duty cycle
-    TA1CCR2 = (TA1CCR2 + 0x20) & 0xFF;	// decrease duty cycle
+    TA1CCR1 = 0x0100;
+    TA1CCR2 = 0x0100;
+
 	int t = 0;
 	while (t<0xFFFF){
 	    P2OUT &= ~BIT1;
@@ -97,6 +98,9 @@ void moveBackward(void) {
 
     P2OUT &= ~BIT0;
     P2OUT &= ~BIT3;
+
+    TA1CCR1 = 0x0020;
+    TA1CCR2 = 0x0020;
 
 }
 
@@ -111,9 +115,11 @@ void smallLeft(void) {
 
     P2OUT &= ~BIT0;
     P2OUT &= ~BIT3;
+
 }
 
 void smallRight(void) {
+
 
 	int t = 0;
 	while (t<0xAFFF){
@@ -124,6 +130,7 @@ void smallRight(void) {
 
     P2OUT &= ~BIT0;
     P2OUT &= ~BIT3;
+
 }
 
 void bigLeft(void) {
