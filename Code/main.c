@@ -7,6 +7,7 @@ void smallRight(void);
 void bigLeft(void);
 void bigRight(void);
 
+
 void main(void) {
     WDTCTL = WDTPW|WDTHOLD;                 // stop the watchdog timer
 
@@ -32,8 +33,8 @@ void main(void) {
     P2OUT |= BIT5;
 
 	TA1CTL = ID_3 | TASSEL_2 | MC_1;		// Use 1:8 presclar off MCLK
-    TA1CCR0 = 0x0050;						// set signal period (changed from 0x0100)
-    										// wheels move same speed
+    TA1CCR0 = 0x0100;						// set signal period (changed from 0x0100)
+
     TA1CCR1 = 0x0020;
     TA1CCTL1 = OUTMOD_7;					// set TACCTL1 to Reset / Set mode
 
@@ -42,12 +43,12 @@ void main(void) {
 
     while (1) {
 
-    	moveForward();
+//    	moveForward();
 //    	moveBackward();
-    	smallLeft();
-    	smallRight();
-    	bigLeft();
-    	bigRight();
+//    	smallLeft();
+//    	smallRight();
+//    	bigLeft();
+//    	bigRight();
 
     	while((P1IN & BIT3) != 0);			// Wait for a button press
     	while((P1IN & BIT3) == 0);			// and release
@@ -62,26 +63,37 @@ void moveForward(void) {
 
     P2OUT |= BIT1;
     P2OUT &= ~BIT5;
+
 }
 
 void moveBackward(void) {
 
     P2OUT &= ~BIT1;
     P2OUT |= BIT5;
+
 }
 
 void smallLeft(void) {
 
+	P2OUT &= ~BIT1;
+	P2OUT &= ~BIT5;
 }
 
 void smallRight(void) {
 
+	P2OUT |= BIT1;
+	P2OUT |= BIT5;
 }
 
 void bigLeft(void) {
 
+	P2OUT &= ~BIT1;
+	P2OUT &= ~BIT5;
 }
 
 void bigRight(void) {
 
+	P2OUT |= BIT1;
+	P2OUT |= BIT5;
 }
+
