@@ -9,7 +9,7 @@
 ```
 #include <msp430.h>
 
-void moveForward(void);
+void moveForward(void);		// declaring methods for later
 void moveBackward(void);
 void smallLeft(void);
 void smallRight(void);
@@ -53,7 +53,7 @@ void main(void) {
 
     while (1) {
 
-    	moveForward();
+    	moveForward();		// what the bot will do
     	enable();
     	moveBackward();
     	enable();
@@ -66,49 +66,44 @@ void main(void) {
     	bigRight();
     	enable();
 
-//    	if((P1IN & BIT3) != 0){					// if button pressed
-//            TA1CCR1 = (TA1CCR1 + 0x010) & 0xFF;	// increase duty cycle
-//            TA1CCR2 = (TA1CCR2 + 0x010) & 0xFF;	// decrease duty cycle
-//    	}
-
 
     } // end loop
 } // end main
 
-void enable(void) {
+void enable(void) {			// sets the enables for the motors
     P2OUT |= BIT0;
     P2OUT |= BIT3;
 }
 void moveForward(void) {
 
-	int t = 0;
+	int t = 0;				// sets time for moving forward
 	while (t<0xFFFF){
-	    P2OUT |= BIT1;
-	    P2OUT &= ~BIT5;
+	    P2OUT |= BIT1;		// L motor CCW
+	    P2OUT &= ~BIT5;		// R motor CW
 		t++;
 	}
 
-    P2OUT &= ~BIT0;
+    P2OUT &= ~BIT0;			// stop motors to show next step is working
     P2OUT &= ~BIT3;
 
 }
 
 void moveBackward(void) {
 
-    TA1CCR1 = 0x0100;
+    TA1CCR1 = 0x0100;		// set motors to be the same speed
     TA1CCR2 = 0x0100;
 
 	int t = 0;
 	while (t<0xFFFF){
-	    P2OUT &= ~BIT1;
-	    P2OUT |= BIT5;
+	    P2OUT &= ~BIT1;		// L motor CW
+	    P2OUT |= BIT5;		// R motor CCW
 		t++;
 	}
 
     P2OUT &= ~BIT0;
     P2OUT &= ~BIT3;
 
-    TA1CCR1 = 0x0020;
+    TA1CCR1 = 0x0020;		// set the motors back to normal speed
     TA1CCR2 = 0x0020;
 
 }
@@ -116,7 +111,7 @@ void moveBackward(void) {
 void smallLeft(void) {
 
 	int t = 0;
-	while (t<0xAFFF){
+	while (t<0xAFFF){		// less time for <45 degree angle
 		P2OUT &= ~BIT1;
 		P2OUT &= ~BIT5;
 		t++;
@@ -145,7 +140,7 @@ void smallRight(void) {
 void bigLeft(void) {
 
 	int t = 0;
-	while (t<0xFFFF){
+	while (t<0xFFFF){		// more time for a >45 degree angle
 		P2OUT &= ~BIT1;
 		P2OUT &= ~BIT5;
 		t++;
@@ -167,6 +162,7 @@ void bigRight(void) {
     P2OUT &= ~BIT0;
     P2OUT &= ~BIT3;
 }
+
 ```
 ## Debugging
 
