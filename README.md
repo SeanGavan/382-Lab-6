@@ -171,4 +171,4 @@ In order to test the code, I placed the methods required in the while loop. I th
 ## Observations
 Upon conclusion of the lab, the uses of timers has been shown to be quite expansive once again. It also allowed me to gain experience on wiring something and actually implementing the MSP430 using both hardware and software. 
 ## Documentation
-I worked with C2C Kiernan on getting my hardware working. I took his advice on how to wire the circuitry. Capt. Trimble helped me repair a blown fuse on my bot, and more wiring issues. 
+I worked with C2C Kiernan on getting my hardware working. I took his advice on how to wire the circuitry. Capt. Trimble helped me repair a blown fuse on my bot, and more wiring issues. I also used the shell code given by Dr. Coulston.
