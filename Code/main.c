@@ -1,3 +1,9 @@
+/**
+ * Name: Sean Gavan
+ * Project: Lab 6
+ * Description: Interfaces with the bot to make it move forward, backward, left, and right
+ * Documentation: I used the shell given by Dr. Coulston.
+ */
 #include <msp430.h>
 
 void moveForward(void);		// declaring methods for later
