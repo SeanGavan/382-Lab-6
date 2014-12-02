@@ -169,6 +169,6 @@ The biggest ordeal was to overcome hardware issues with the bot and wiring. Afte
 ## Testing Methodology 
 In order to test the code, I placed the methods required in the while loop. I then tested them one at a time to ensure that the code worked for what I had intended. In order to make sure the timing was right (especially for the turning methods) I created while loops within the methods that would take up time and also accomplish what movement I wanted. After the loops were finished, the motors were turned off so that the bot would stop--showing that another movement method was starting. Once the methods had been shown to work, I had to ensure that they lasted long enough to be evident in the functionality check. This meant slowing the intervals and increasing the time taken by the while loops.
 ## Observations
-
+Upon conclusion of the lab, the uses of timers has been shown to be quite expansive once again. It also allowed me to gain experience on wiring something and actually implementing the MSP430 using both hardware and software. 
 ## Documentation
 I worked with C2C Kiernan on getting my hardware working. I took his advice on how to wire the circuitry. Capt. Trimble helped me repair a blown fuse on my bot, and more wiring issues. 
