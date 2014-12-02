@@ -7,6 +7,12 @@
 The goal of the lab was to gain experience with pulse width modulation with the MSP430. It also allowed some hardware setup between the MSP430 and a robot. The software component came into play by making the bot move forward, backward, left, and right.
 ## Code
 ```
+/**
+ * Name: Sean Gavan
+ * Project: Lab 6
+ * Description: Interfaces with the bot to make it move forward, backward, left, and right
+ * Documentation: I used the shell given by Dr. Coulston.
+ */
 #include <msp430.h>
 
 void moveForward(void);		// declaring methods for later
