@@ -4,7 +4,7 @@
 
 ![alt text](https://raw.githubusercontent.com/SeanGavan/382-Lab-6/master/Images/MSP430.png "Prelab MSP430")
 ## Objectives
-
+The goal of the lab was to gain experience with pulse width modulation with the MSP430. It also allowed some hardware setup between the MSP430 and a robot. The software component came into play by making the bot move forward, backward, left, and right.
 ## Code
 ```
 #include <msp430.h>
@@ -165,9 +165,9 @@ void bigRight(void) {
 
 ```
 ## Debugging
-
+The biggest ordeal was to overcome hardware issues with the bot and wiring. After coming up with the proper schematics, I then needed to solve the issue of a blown fuse. Capt. Trimble told me to add in more capacitors to divert voltage, and that a fuse needed to be replaced on the bot itself. After solving this issue with Capt. Trimble's help, I was able to continue working on code. From here I needed to work on getting the motors spinning at the same speed. This meant adjusting the PWM intervals so that the wheels turned at the same rate. 
 ## Testing Methodology 
-
+In order to test the code, I placed the methods required in the while loop. I then tested them one at a time to ensure that the code worked for what I had intended. In order to make sure the timing was right (especially for the turning methods) I created while loops within the methods that would take up time and also accomplish what movement I wanted. After the loops were finished, the motors were turned off so that the bot would stop--showing that another movement method was starting. Once the methods had been shown to work, I had to ensure that they lasted long enough to be evident in the functionality check. This meant slowing the intervals and increasing the time taken by the while loops.
 ## Observations
 
 ## Documentation
